@@ -63,6 +63,7 @@ def is_bound(array):
 	return True
 
 def PtoA(array):
+	
 	#make P(-x)
 	for i in range(len(array)):
 		if (len(array)-i-1) % 2 != 0:
