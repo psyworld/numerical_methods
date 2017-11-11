@@ -6,7 +6,7 @@ def main():
 	upper_bound = getBound(m)
 	lower_bound = (-1)*getBound(PtoA(m))
 	print(lower_bound, upper_bound)
-	boundaries	= separation(lower_bound, upper_bound)
+	boundaries = separation(lower_bound, upper_bound)
 	print(*boundaries)
 	roots 		= getRoots(boundaries)
 	print(*roots)
