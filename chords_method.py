@@ -1,8 +1,8 @@
 import math as m
 
 def main():
-	a = -3.34159
-	b = 2.94159
+	a = -2.88068
+	b = 2.53586
 
 	boundaries = separation(a,b)
 	print(boundaries)
@@ -12,13 +12,13 @@ def main():
 	
 
 def f(x):
-	return m.tan(0.5*x + 0.1) - x*x 
+	return m.tan(0.58*x + 0.1) - x*x 
 
 def df(x):
-	return 0.5/((m.cos(0.5*x+0.1)) ** 2) - 2*x
+	return 0.58/((m.cos(0.58*x+0.1)) ** 2) - 2*x
 
 def d2f(x):
-	return 0.5*m.tan(0.5*x+0.1)/((m.cos(0.5*x+0.1))**2) - 2
+	return 0.6728*m.tan(0.58*x+0.1)/((m.cos(0.58*x+0.1))**2) - 2
 
 def separation(low, up):
 	epsilon = 0.1
