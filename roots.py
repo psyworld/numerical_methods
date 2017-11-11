@@ -7,36 +7,38 @@ def main():
 	lower_bound = (-1)*getBound(PtoA(m))
 	print(lower_bound, upper_bound)
 	root_bounds	= separation(lower_bound, upper_bound)
-	print(root_bounds)
+	print(*root_bounds)
 	roots 		= getRoots(root_bounds)
-	print(roots)
+	print(*roots)
 
 def f(x):
 	return x**3+2*x+4
 
-def dx(x):
+def df(x):
 	return 3*x*x + 2
-	
-def getRoots(array):
+
+def getRoots(bounds): #use iteration method
+	epsilon = 0.001
 	roots = []
-	for i in array:
-		xi = (i[0]+i[1])*0.5
-		if round(f(xi),3) == 0.000:
-			roots.append(xi)
-		elif f(xi)*f(i[0]) < 0:
-			roots.append([i[0],xi])
-		else:
-			roots.append([xi, i[1]])
+	n = 4
+	for i in bounds:
+		x0 = i[1]
+		xn = x0 - f(x0)/df(x0)
+		while (fabs(x0 -xn) > epsilon):
+			x0 = xn
+			xn = x0 - f(x0)/df(x0)
+		roots.append(round(xn, n))
 	return roots
+	
 
 def separation(low, up):
-	epsilon = 0.001
-	n 		= 3 
+	epsilon = 0.1
+	n 		= 3
 	roots   = []
 	i = low + epsilon
 	while i < up:
-		if f(i)*f(i-epsilon) < 0 and dx(i)*dx(i-epsilon) > 0:
-			roots.append([round(i,n), round(i-epsilon,n)])
+		if f(i)*f(i-epsilon) < 0 and df(i)*df(i-epsilon) > 0:
+			roots.append([round(i-epsilon,n),round(i,n)])
 		i += epsilon
 	return roots
 
