@@ -4,10 +4,10 @@ def main():
 	a = -3.34159
 	b = 2.94159
 
-	bounds = separation(a,b)
-	print(bounds)
+	boundaries = separation(a,b)
+	print(boundaries)
 
-	roots = getRoots(bounds)
+	roots = getRoots(boundaries)
 	print(*roots)
 	
 
@@ -31,10 +31,10 @@ def separation(low, up):
 		i += epsilon
 	return roots
 
-def getRoots(bounds): #use chords method
+def getRoots(bound): #use chords method
 	roots = []
 	epsilon = 0.001
-	for i in bounds:
+	for i in bound:
 		a = i[0]
 		b = i[1]
 		if f(a)<0 and f(b)>0 and d2f(b) > 0 or f(a)>0 and f(b)<0 and d2f(b) < 0:   
