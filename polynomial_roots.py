@@ -2,7 +2,7 @@ from math import *
 
 def main():
 	#input polynomial coefficients from a_0 to a_n
-	m 			= [int(i) for i in input().split()] 
+	m 	        = [int(i) for i in input().split()] 
 	upper_bound = getBound(m)
 	lower_bound = (-1)*getBound(PtoA(m))
 	print(lower_bound, upper_bound)
@@ -19,7 +19,7 @@ def df(x):
 
 def getRoots(bounds): #use iteration method
 	epsilon = 0.001
-	roots = []
+	roots   = []
 	n = 4
 	for i in bounds:
 		x0 = i[1]
