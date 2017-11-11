@@ -6,9 +6,9 @@ def main():
 	upper_bound = getBound(m)
 	lower_bound = (-1)*getBound(PtoA(m))
 	print(lower_bound, upper_bound)
-	root_bounds	= separation(lower_bound, upper_bound)
-	print(*root_bounds)
-	roots 		= getRoots(root_bounds)
+	boundaries	= separation(lower_bound, upper_bound)
+	print(*boundaries)
+	roots 		= getRoots(boundaries)
 	print(*roots)
 
 def f(x):
@@ -17,11 +17,11 @@ def f(x):
 def df(x):
 	return 3*x*x + 2
 
-def getRoots(bounds): #use iteration method
+def getRoots(bound): #use iteration method
 	epsilon = 0.001
 	roots   = []
 	n = 4
-	for i in bounds:
+	for i in bound:
 		x0 = i[1]
 		xn = x0 - f(x0)/df(x0)
 		while (fabs(x0 -xn) > epsilon):
