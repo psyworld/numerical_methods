@@ -1,4 +1,4 @@
-from math import *
+import math as m
 
 def main():
 	#input polynomial coefficients from a_0 to a_n
@@ -13,27 +13,39 @@ def main():
 	print(*check(roots))
 
 def f(x):
-	return x**3+2*x+4
+	return x**3-3*x*x-2*x-3
 
 def df(x):
-	return 3*x*x + 2
+	return 3*x*x - 6*x - 2 
 
-def getRoots(bound): #use iteration method
+def d2f(x):
+	return 6*x - 6
+
+def getRoots(bound): #use Newton's method
+	roots = []
 	epsilon = 0.001
-	roots   = []
-	n = 4
 	for i in bound:
-		x0 = i[1]
-		xn = x0 - f(x0)/df(x0)
-		while (fabs(x0 -xn) > epsilon):
-			x0 = xn
-			xn = x0 - f(x0)/df(x0)
-		roots.append(round(xn, n))
+		a = i[0]
+		b = i[1]
+		x0 = a - f(a)*(b-a)/(f(b)-f(a))
+		xn = b - f(b)/df(b)
+		if f(a)<0 and f(b)>0 and d2f(b) > 0 or f(a)>0 and f(b)<0 and d2f(b) < 0:   
+		#i.e. f'(x) * f''(x) > 0
+		    while m.fabs(xn-x0) > epsilon:
+		    	x0 = x0 - f(x0)*(xn - x0)/(f(xn)-f(x0))
+		    	xn = xn - f(xn)/df(xn)
+		    roots.append(round(xn,4))
+		else:
+		#i.e. f'(x) * f''(x) < 0
+			while m.fabs(xn - x0) > epsilon:
+				x0 = x0 - f(x0)/df(x0)
+				xn = xn - f(xn)*(xn-x0)/(f(xn) - f(x0))
+			roots.append(round(xn, 4))
 	return roots
 	
 
 def separation(low, up):
-	epsilon = 0.1
+	epsilon = 0.01
 	n 		= 3
 	roots   = []
 	i = low + epsilon
@@ -77,7 +89,6 @@ def PtoA(array):
 
 def check(array):
 	return list(map(lambda x: '%f'%f(x), array))
-
 
 if __name__ == "__main__":
 	main()

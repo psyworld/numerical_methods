@@ -10,6 +10,7 @@ def main():
 	print(*boundaries)
 	roots 		= getRoots(boundaries)
 	print(*roots)
+	print(*check(roots))
 
 def f(x):
 	return x**3-6*x-8
@@ -87,6 +88,9 @@ def PtoA(array):
 	if (len(array)-1) % 2 != 0:
 		return list(map(lambda x: x*(-1),array))
 	return array
+
+def check(array):
+	return list(map(lambda x: '%f'%f(x), array))
 
 
 if __name__ == "__main__":

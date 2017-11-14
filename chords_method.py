@@ -9,8 +9,8 @@ def main():
 
 	roots = getRoots(boundaries)
 	print(*roots)
+	print(*check(roots))
 	
-
 def f(x):
 	return m.tan(0.58*x + 0.1) - x*x 
 
@@ -54,6 +54,9 @@ def getRoots(bound): #use chords method
 				xn = x0 - f(x0)*(x0-a)/(f(xn)-f(a))
 			roots.append(round(xn, 4))
 	return roots
+
+def check(array):
+	return list(map(lambda x: '%f'%f(x), array))
 
 if __name__ == "__main__":
 	main()

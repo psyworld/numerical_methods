@@ -9,6 +9,7 @@ def main():
 		x0 = xn
 		xn = x0 - f(x0)/df(x0)
 	print('	x = ', xn)
+	print('%f'%f(xn))
 
 def f(x):
 	return 3*x-m.exp(x)
