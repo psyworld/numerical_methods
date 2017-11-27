@@ -18,18 +18,14 @@ def main():
 	for j in range(n):
 		c[0][j] = a[0][j]/b[0][0] 
 
-	for i in range(n):
-		for j in range(n):
-			s = 0
-			if i >= j > 0:
-				for k in range(j-1):
-					s += b[i][k]*c[k][j]
-				b[i][j] = a[i][j]-s
-			if 0 < i < j:
-				s = 0
-				for k in range(i-1):
-					s += b[i][k]*c[k][j]
-				c[i][j] = (1/b[i][i]).round(1)*(a[i][j]-s)
+	for i in range(1, n):
+		for j in range(1, n):
+			if i >= j:
+				sum1 = sum([b[i][k]*c[k][j] for k in range(0, j)])
+				b[i][j] = a[i][j]-sum1
+			if i < j:
+				sum2 = sum([b[i][k]*c[k][j] for k in range(0, i)])
+				c[i][j] = (a[i][j]-sum2)/b[i][i]
 	print('b = ','\n', b, end='\n')
 	print('c =','\n', c, end='\n')
 
@@ -39,19 +35,16 @@ def main():
 	x = np.zeros(n)
 
 	y[0] = a_free[0]/b[0][0]
+
+	for i in range(1, n):
+		sum1 = sum([b[i][k]*y[k] for k in range(0, i)])
+		y[i] = (a_free[i]-sum1)/b[i][i]
+
 	x[n-1] = y[n-1]
 
-	for i in range(n):
-		s = 0
-		if i > 0: 
-			for k in range(i-1):
-				s += b[i][k]*y[k]
-			y[i] = (1/b[i][i])*(a_free[i]-s)
-		if i < (n-1):
-			s = 0
-			for k in range(i, n):
-				s += c[i][k]*x[k]
-			x[i] = y[i] - s
+	for i in range(n-1, -1, -1):
+		sum1 = sum([c[i][k]*x[k] for k in range(i+1, n)])
+		x[i] = y[i] - sum1
 
 	print('y = ', y, '\n')
 	print('x = ', x, '\n')
