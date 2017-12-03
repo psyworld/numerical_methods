@@ -33,21 +33,17 @@ def start(n, array, free):
 				a[i][j] = round(-array[i][j]/array[i][i], 4)
 			else:
 				a[i][j] = 0
-	print(b, '\n', a)
+			 
+def iteration(n, a, b, x)
 
-def iteration(n, )
+	
 
-	while ok(b, a):
-		for i in range(n):
-		b[i] = round(b[i]/array[i][i], 4)
-		for j in range(n):
-			if i != j:
-				a[i][j] = round(-array[i][j]/array[i][i], 4)
-			else:
-				a[i][j] = 0
+def epsilon(x, eps):
+	for i in range(x):
+		if m.fabs(x[i]) >= eps:
+			return False
+	return True
 
-def ok(b, a):
-	for i in range()
 
 
 if __name__ == '__main__':
