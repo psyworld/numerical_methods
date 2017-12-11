@@ -13,10 +13,21 @@ def main():
 
 	epsilon = 0.001
 
-	x = iteration(a, b, epsilon)
-	print(x, end='\n\n')
-	print(np.dot(a, x))
+	c = np.zeros((n,n))
+	for i in range(n):
+		for j in range(n):
+			if i != j:
+				c[i][j] = a[i][j]/a[i][i]
+	print("alpha = ", c, end='\n\n')
 
+	x = iteration(a, b, epsilon)
+	b_ = np.dot(a,x)
+	print(x, end='\n\n')
+	print(b_, end='\n\n')
+	print(check(b_, b))
+
+def check(a,b):
+	return ['%f'%(m.fabs(a[i]-b[i])) for i in range((n))]
 
 def eval(A, b, X):
 	e = np.zeros(n)
