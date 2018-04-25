@@ -1,7 +1,6 @@
 import numpy as np
 
 np.set_printoptions(suppress=True)
-h = 0.05
 
 def main():
 	X = np.array([
